@@ -174,11 +174,12 @@ def input(key):
     for start in buttons:
         if start.hovered:
             if key == 'left mouse down':
-                os.system('python  "/home/mustafa/code.1/minecraft/minecraft_crash.py"')
+                # cwd = os.getcwd()
+                os.system('python  "minecraft_crash.py"')
     for ba in backe:
         if ba.hovered:
             if key == 'left mouse down':
-                os.system('python  "/home/mustafa/code.1/minecraft/minecraft_lucky_block_advanter.py"')
+                os.system('python  "minecraft_lucky_block_advanter.py"')
     for esc in er:
         if esc.hovered:
             if key == 'left mouse down':
@@ -186,7 +187,7 @@ def input(key):
     for buto in buttone:
         if buto.hovered:
             if key == 'left mouse down':
-                os.system('python  "/home/mustafa/code.1/minecraft/mincraft_lucky_block_battle.py"')
+                os.system('python  "mincraft_lucky_block_battle.py"')
 
 
 app.run()
