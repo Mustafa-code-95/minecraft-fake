@@ -1,2 +1,4 @@
 # minecraft-fake
-ich arbeite an einen fake minecraft.
+
+## Info
+Dieses fake minecraft wurde in Python geschriben die gameengine heißt ursina.
