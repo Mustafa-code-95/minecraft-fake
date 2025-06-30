@@ -93,53 +93,20 @@ def add_lu(position, color):
     )
 
 
-n = -21
-ccc = -6
-for _ in range(20):
-    n += 1
-    ccc = -6
-    for _ in range(27):
-        ccc += 1
-        add_box(position=(ccc, 0, n), color=color.white, texture='retro.png')
+n = 0
 
-
-n = -1
-for _ in range(150):
-    n += 2
-    add_lu(position=(15, 1, n), color=color.white)
-
-
-n = -1
-for _ in range(150):
-    n += 2
-    a = ['mix.png', 'fant.png']
-    add_mix(position=(8, 1, n), texture=a[randint(0, 1)])
-
-n = -1
-for _ in range(150):
-    n += 2
-    io = liste[randint(0, 1)]
-    add_lucky(position=(1, 1, n), color=color.white, texture=io)
-
-
-for u in range(300):
-    for i in range(3):
-        add_box(position=(i+14, 0, u), color=color.white, texture='derr.jpg')
-
-for u in range(300):
-    for i in range(3):
-        zu = randint(0, len(noob)-1)
-        tv = noob[zu]
-        add_box(position=(i+7, 0, u), color=color.white, texture=tv)
-
-for u in range(300):
-    for i in range(3):
-        add_box(position=(i, 0, u), color=color.white, texture='ste.jpg')
-
-
-def update():
-    pass
-
+for n in range(10):
+    for z in range(10):
+        for u in range(10):
+            uii = randint(1, 3)
+            if uii == 1:
+                add_lu(position=(z, u+1, n), color=color.white)
+            elif uii == 2:
+                a = ['mix.png', 'fant.png']
+                add_mix(position=(z, u+1, n), texture=a[randint(0, 1)])
+            else:
+                io = liste[randint(0, 1)]
+                add_lucky(position=(z, u+1, n), color=color.white, texture=io)
 
 tv = None
 
