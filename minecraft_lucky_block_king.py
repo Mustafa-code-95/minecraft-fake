@@ -135,6 +135,12 @@ def input(key):
                 if tzeer == 2:
                     a = randint(0, len(list)-1)
                     tvee = list[a]
+                else:
+                    zu = randint(0, len(noob)-1)
+                    tvee = noob[zu]
+                t = 1 if tvee == 'tr1.png' else 0
+                add_box(luck.position + mouse.normal, color=cv[t], texture=tvee)
+                d_text.text = str(f'box:{eur+ui}')
             elif key == "right mouse down" and ur != 0:
                 ur -= 1
                 a = randint(0, len(noob)-1)
@@ -142,10 +148,10 @@ def input(key):
                 t = 1 if o == 'tr1.png' else 0
                 rtr = randint(1, 20)
                 if not rtr == 1:
-                    add_box(lu.position + mouse.normal, color=cv[t], texture=o)
+                    add_box(luck.position + mouse.normal, color=cv[t], texture=o)
                 else:
                     a = ['mix.png', 'fant.png']
-                    add_mix(lu.position + mouse.normal, texture=a[randint(0, 1)])
+                    add_mix(luck.position + mouse.normal, texture=a[randint(0, 1)])
                 b_text.text = str(f'noob box:{ur}')
 
     for luck in destroyed_lucks:
@@ -176,7 +182,7 @@ def input(key):
                 a = randint(0, len(list)-1)
                 o = list[a]
                 t = 1 if o == 'tr1.png' else 0
-                add_box(luck.position + mouse.normal, color=cv[t], texture=o)
+                add_box(mix.position + mouse.normal, color=cv[t], texture=o)
                 d_text.text = str(f'box:{eur+ui}')
             elif key == "right mouse down" and ur != 0:
                 ur -= 1
@@ -185,10 +191,10 @@ def input(key):
                 t = 1 if o == 'tr1.png' else 0
                 rtr = randint(1, 20)
                 if not rtr == 1:
-                    add_box(lu.position + mouse.normal, color=cv[t], texture=o)
+                    add_box(mix.position + mouse.normal, color=cv[t], texture=o)
                 else:
                     a = ['mix.png', 'fant.png']
-                    add_mix(lu.position + mouse.normal, texture=a[randint(0, 1)])
+                    add_mix(mix.position + mouse.normal, texture=a[randint(0, 1)])
                 b_text.text = str(f'noob box:{ur}')
 
     for mix in destroyed_mix:
