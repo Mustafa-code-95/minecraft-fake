@@ -1,32 +1,35 @@
 import os
 import json
-from ursina import Sky
-from ursina import Ursina
-from ursina import Button
-from ursina import color
-from ursina import Text
-from ursina import held_keys
-from ursina import destroy
-from ursina import scene
-from ursina import mouse
+from ursina import Sky, Ursina, Button, color, Text, held_keys, destroy, scene, mouse, application
 from ursina.prefabs.first_person_controller import FirstPersonController
-from ursina import application
+
 
 app = Ursina()
 player = FirstPersonController()
 player.position = 2, 20, 2
 Sky(texture='sky_sunset')
-list = ['der.jpeg', 'retro.png', 'cry.png', 'obs.png', 'glo.jpg', 'bri.jpg', 'red.jpg', 'ingo.png', 'stein1.png', 'stein2.png', 'oo.png', '44.png', 'rt.png', 'buer.jpg', 'ft.png', 'rt.jpg', 'tatata.jpg', 'ste.jpg', 'derr.jpg']
-list_draw = ["dirt", "Retro Obsidian", "Crying Obsidian", "Obsidian", "glow stone", "Blackstone", "Redstone", "silver erz", "Stone", "Kobbel Stone", "Nubered hotbar", "Clear Glas", "Glas", "Zigel", "end stone", "wood", "Nether stone", "snow", "Sand"]
+
+textures_list = [
+    'der.jpeg', 'retro.png', 'cry.png', 'obs.png', 'glo.jpg', 'bri.jpg',
+    'red.jpg', 'ingo.png', 'stein1.png', 'stein2.png', 'oo.png', '44.png',
+    'rt.png', 'buer.jpg', 'ft.png', 'rt.jpg', 'tatata.jpg', 'ste.jpg', 'derr.jpg'
+]
+
+list_draw = [
+    "dirt", "Retro Obsidian", "Crying Obsidian", "Obsidian", "glow stone",
+    "Blackstone", "Redstone", "silver erz", "Stone", "Kobbel Stone",
+    "Nubered hotbar", "Clear Glas", "Glas", "Zigel", "end stone", "wood",
+    "Nether stone", "snow", "Sand"
+]
+
 d = 0
 t = 0
 cv = [color.white, color.white66]
-wer = []
-a = list[d]
+a = textures_list[d]
 ddd = list_draw[d]
 boxes = []
-g = 1
-b_b_text = Text('', origin=(0,7), scale=2)
+
+b_b_text = Text('', origin=(0, 7), scale=2)
 
 
 def save_world():
@@ -40,16 +43,30 @@ def save_world():
         json.dump(world_data, f)
 
 
+def reset_world():
+    for box in boxes:
+        destroy(box)
+    boxes.clear()
+    player.position = (2, 20, 2)
+
+
 def load_world():
+    for box in boxes:
+        destroy(box)
+    boxes.clear()
+
+    player.position = (2, 20, 2)
+
     if not os.path.exists('world_save.json'):
         return
+
     with open('world_save.json', 'r') as f:
         world_data = json.load(f)
+
     for data in world_data:
         pos = tuple(data['position'])
         tex = data['texture']
         add_box(pos, color=color.white, texture=tex)
-
 
 
 
@@ -66,13 +83,10 @@ def add_box(position, color, texture):
     )
 
 
-for ioo in range(2):
-    g = ioo + 1
-    for ou in range(51):
-        x = ou + 1
-        for hu in range(51):
-            y = hu + 1
-            add_box( (x, g, y), color=color.white, texture='ste.jpg')
+for g in range(2):
+    for x in range(1, 52):
+        for y in range(1, 52):
+            add_box((x, g + 1, y), color=color.white, texture='ste.jpg')
 
 
 def update():
@@ -85,7 +99,7 @@ def update():
         application.quit()
     if held_keys['m']:
         player.position = 0, 17, 0
-    if ((held_keys['l']) or (held_keys['r'])):
+    if held_keys['l'] or held_keys['r']:
         ddd = list_draw[d]
         b_b_text.text = ddd
 
@@ -103,18 +117,20 @@ def input(key):
             if key == "left mouse down":
                 boxes.remove(box)
                 destroy(box)
+
     if key == "l":
         if d == 0:
-            d = len(list)-1
+            d = len(textures_list) - 1
         else:
             d -= 1
-        a = list[d]
+        a = textures_list[d]
+
     if key == "r":
-        if d == len(list)-1:
+        if d == len(textures_list) - 1:
             d = 0
         else:
             d += 1
-        a = list[d]
+        a = textures_list[d]
 
 
 app.run()
