@@ -47,7 +47,7 @@ def reset_world():
     for box in boxes:
         destroy(box)
     boxes.clear()
-    player.position = (2, 20, 2)
+    player.position = (2, 210, 2)
 
 
 def load_world():
