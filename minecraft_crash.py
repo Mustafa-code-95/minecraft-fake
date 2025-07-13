@@ -69,7 +69,6 @@ def load_world():
         add_box(pos, color=color.white, texture=tex)
 
 
-
 def add_box(position, color, texture):
     boxes.append(
         Button(
