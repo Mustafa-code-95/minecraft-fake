@@ -27,6 +27,30 @@ g = 1
 b_b_text = Text('', origin=(0,7), scale=2)
 
 
+def save_world():
+    world_data = []
+    for box in boxes:
+        world_data.append({
+            'position': list(box.position),
+            'texture': box.texture.name if box.texture else None
+        })
+    with open('world_save.json', 'w') as f:
+        json.dump(world_data, f)
+
+
+def load_world():
+    if not os.path.exists('world_save.json'):
+        return
+    with open('world_save.json', 'r') as f:
+        world_data = json.load(f)
+    for data in world_data:
+        pos = tuple(data['position'])
+        tex = data['texture']
+        add_box(pos, color=color.white, texture=tex)
+
+
+
+
 def add_box(position, color, texture):
     boxes.append(
         Button(
@@ -51,6 +75,10 @@ for ioo in range(2):
 
 def update():
     global d, ddd, list_draw
+    if held_keys['v']:
+        save_world()
+    if held_keys['b']:
+        load_world()
     if held_keys['c']:
         application.quit()
     if held_keys['m']:

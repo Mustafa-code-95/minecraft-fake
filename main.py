@@ -9,6 +9,8 @@ from ursina import camera
 import os
 
 
+os.system('cd ..')
+os.system('cd minecraft-fake')
 points = 0
 buttone = []
 o = 1
